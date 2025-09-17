@@ -9,7 +9,7 @@ variable "cidr" {
 
 resource "aws_key_pair" "example" {
   key_name   = "id_rsa"  # Replace with your desired key name
-  public_key = file("/home/akshay_12/.ssh/id_rsa.pub")  # Replace with the path to your public key file
+  public_key = file("id_rsa.pub")  # Replace with the path to your public key file
 }
 
 resource "aws_vpc" "myvpc" {
@@ -82,13 +82,13 @@ resource "aws_instance" "server" {
   connection {
     type        = "ssh"
     user        = "ec2-user"  # Replace with the appropriate username for your EC2 instance
-    private_key = file("/home/akshay_12/.ssh/id_rsa")  # Replace with the path to your private key
+    private_key = file("id_rsa")  # Replace with the path to your private key
     host        = self.public_ip
   }
 
   # File provisioner to copy a file from local to the remote EC2 instance
   provisioner "file" {
-    source      = "/home/akshay_12/aws/terraform/day5/app.py"  # Replace with the path to your local file
+    source      = "app.py"  # Replace with the path to your local file
     destination = "/home/ec2-user/app.py"  # Replace with the path on the remote instance
   }
 
@@ -97,7 +97,7 @@ resource "aws_instance" "server" {
       "echo 'Hello from the remote instance'",
       "sudo apt update -y",  # Update package lists (for ubuntu)
       "sudo apt-get install -y python3-pip",  # Example package installation
-      "cd /home/ec-user",
+      "cd /home/ec2-user",
       "sudo pip3 install flask",
       "sudo python3 app.py &",
     ]
