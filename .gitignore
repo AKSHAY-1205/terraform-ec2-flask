@@ -1,0 +1,12 @@
+# SSH keys
+*.pem
+*.key
+*.pub
+
+# Terraform state files
+*.tfstate
+*.tfstate.*
+.terraform/
+
+# OS files
+.DS_Store
