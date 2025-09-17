@@ -1,4 +1,4 @@
-🚀 **Terraform AWS EC2 + Flask Project**
+**🚀 **Terraform AWS EC2 + Flask Project****
 
 **Project Overview**
 Automate the deployment of an AWS EC2 instance running a Flask web application using Terraform.
